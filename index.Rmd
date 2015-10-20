@@ -28,23 +28,21 @@ knitr::opts_chunk$set(
 ```
 
 ```{r include=TRUE, eval=FALSE}
-library(rGithubClient)
-library(knit2synapse)
 library(synapseClient)
 synapseLogin()
 
 # myFileName <- "index.Rmd"
-# thisScript <- getPermlink(getRepo("Sage-Bionetworks/20151027_U4C"), 
-#                           myFileName)
+# thisScript <- rGithubClient::getPermlink(rGithubClient::getRepo("Sage-Bionetworks/20151027_U4C"), 
+#                                          myFileName)
 # 
 # thisFile <- File(thisScript, name="U4C Webinar - Project Submission Slides",
 #                  parentId="syn4597738", synapseStore=FALSE)
 # thisFile <- synStore(thisFile)
 # 
-# knitfile2synapse(file = myFileName,
-#                  owner = thisFile@properties$id, 
-#                  wikiName = "Webinar for U4C",
-#                  overwrite=T)
+# knit2synapse::knitfile2synapse(file = myFileName,
+#                                owner = thisFile@properties$id, 
+#                                wikiName = "Webinar for U4C",
+#                                overwrite=T)
 
 ```
 
