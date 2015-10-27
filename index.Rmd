@@ -292,6 +292,7 @@ See [4.5 - How to Submit A Challenge Entry](https://www.synapse.org/#!Synapse:sy
 1. Check that your submission appears in the submissions list
 1. `Share` your project with the `NCI U4C Evaluation Panel` - they require view permissions
 1. Potentially share your project with the public, whenever you want!
+1. After the submission deadline, do not make any changes!
 
 ## Documentation and examples
 
