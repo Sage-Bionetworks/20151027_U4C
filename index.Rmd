@@ -5,8 +5,8 @@ author: "[Kenneth Daily](https://www.synapse.org/#!Profile:3323072)"
 date: "2015-10-27"
 output: 
   ioslides_presentation:
-    widescreen: true
     logo: ./img/sage_logo.png
+    widescreen: yes
 ---
 
 
@@ -31,18 +31,18 @@ knitr::opts_chunk$set(
 library(synapseClient)
 synapseLogin()
 
-# myFileName <- "index.Rmd"
-# thisScript <- rGithubClient::getPermlink(rGithubClient::getRepo("Sage-Bionetworks/20151027_U4C"), 
-#                                          myFileName)
-# 
-# thisFile <- File(thisScript, name="U4C Webinar - Project Submission Slides",
-#                  parentId="syn4597738", synapseStore=FALSE)
-# thisFile <- synStore(thisFile)
-# 
-# knit2synapse::knitfile2synapse(file = myFileName,
-#                                owner = thisFile@properties$id, 
-#                                wikiName = "Webinar for U4C",
-#                                overwrite=T)
+myFileName <- "index.Rmd"
+repo <- rGithubClient::getRepo("Sage-Bionetworks/20151027_U4C")
+thisScript <- rGithubClient::getPermlink(repo, 
+                                         myFileName)
+
+thisFile <- File(thisScript, name="U4C Webinar - Project Submission Slides",
+                 parentId="syn4597738", synapseStore=FALSE)
+thisFile <- synStore(thisFile)
+ 
+knit2synapse::knitfile2synapse(file = myFileName,
+                               owner = thisFile@properties$id, 
+                               overwrite=T)
 
 ```
 
@@ -139,7 +139,10 @@ Details are available at
 1. Create two folders - one for Abstract and one for Code
 1. Edit the Wiki on the Abstract folder to contain the text of your Abstract
 1. Edit the Project-level Wiki with the content of your Submission (many features in Synapse to make this proj sharable and reproducible, talk about those now)
+
+<div class="notes">
 1. Everything created gets a unique ID (synXXXXX) - can refer to any Project, File, or Folder that way
+</div>
 
 ## Synapse for U4C | Creating a Submission
 
@@ -192,13 +195,13 @@ However, a file can be linked instead of stored, and can still be used by many f
 <img src='./img/U4C_Example_LinkFile.png' width='60%'>
 </div>
 
-## Synapse features | Certified user { .smaller }
+## Synapse features | Certified user
 
-<img src='./img/synapse_certified_user.png' width='60%'>
+<img src='./img/synapse_certified_user.png' width='75%'>
 
 <br/>
 
-In order to add content to Synapse, [Take the Quiz](https://www.synapse.org/#!Quiz:Certification) to become a Certified User!
+**In order to add content to Synapse, [Take the Quiz](https://www.synapse.org/#!Quiz:Certification) to become a Certified User!**
 
 ## Synapse features | Annotations { .smaller }
 
@@ -218,16 +221,17 @@ In order to add content to Synapse, [Take the Quiz](https://www.synapse.org/#!Qu
 
 <img src='./img/synapse_record_provenance.png' width='60%'>
 
+**Provenance = keeping track of inputs, outputs, and the code to run**
+
 - Who did what to a file and when?
-- Track data processing steps in a computer-friendly manner
-- Either when you run your code or in the browser
+- Retrieve in a computer-friendly manner
+- Do it while you work or later in the browser
 
 ## Synapse features | [Visualizing provenance in the browser](https://www.synapse.org/#!Synapse:syn4157529) { .smaller }
 
 <div class="centered">
 <img src='./img/U4C_provenance_example.png' width='32%'>
 </div>
-
 
 ## Synapse features | Synapse API
 <div class="centered">
@@ -243,6 +247,7 @@ Nearly all features of available in the web browser are available in the R and P
 * Manipulating annotations
 * Manipulating provenance
 * Creating and updating tables
+* Making Wikis
 </div>
 
 ## Synapse for U4C | Example Project Submission { .smaller }
@@ -251,13 +256,13 @@ Let's explore the [Example Project Submission](https://www.synapse.org/#!Synapse
 
 ## Synapse for U4C | Example Project Submission Live Demo { .smaller }
 
-1. We have put together an example project submission to highlight ways that you can use the features of Synapse to make your submission reproducible and sharable.
-1. Note that you can see how to implement any of the features described in the example project by clicking "View Wiki Source" (doesn't show in my menu b/c I'm logged in)
+An [Example Project Submission](https://www.synapse.org/#!Synapse:syn4154450/) to highlight ways that you can use the features of Synapse to make your submission reproducible and sharable.
+
+1. Note that you can see how to implement any of the features described in the example project by clicking "View Wiki Source"
 1. Highlight examples on putting data (including dbGaP data linked) including code
 1. Go to Data folder, show table
-1. Go to Code folder - place to describe 
 1. Go to dbGaP data folder and file, show that the file is not uploaded
-1. Back at example project, show provenance (including that dbGaP files can be used in Provenance)
+1. Back at example project, show provenance examples
 
 ## Example public Projects | For inspiration of Synapse features
 
@@ -284,7 +289,9 @@ See [4.5 - How to Submit A Challenge Entry](https://www.synapse.org/#!Synapse:sy
 1. Provide a name (same as your Project title)
 1. Choose submitting as indiv or team (I'll choose team)
 1. Submit!
-1. Check that your submission appears in the 
+1. Check that your submission appears in the submissions list
+1. `Share` your project with the `NCI U4C Evaluation Panel` - they require view permissions
+1. Potentially share your project with the public, whenever you want!
 
 ## Documentation and examples
 
@@ -309,29 +316,32 @@ See [4.5 - How to Submit A Challenge Entry](https://www.synapse.org/#!Synapse:sy
 
 ## Advanced Synapse features
 
-The following slides provide some advanced Synapse features.
-
-I will probably include them in the Community forum as question/answer type things.
+* Tables
+* More annotations
+* RMarkdown to Synapse Wikis (knit2synapse)
 
 ## Synapse features | Structured data tables
 
 * Data that is queryable, but also enforces the data type is stored in each column
-* Can share a [link](https://www.synapse.org/#!Synapse:syn3156503/tables/query/eyJsaW1pdCI6MjUsICJzcWwiOiJTRUxFQ1QgVUlELGJpb2xvZ2ljYWxTYW1wbGVOYW1lLERpZmZuYW1lX3Nob3J0LHBhc3NfcWMsQ2VsbF9UeXBlLENlbGxfTGluZV9UeXBlLFRpc3N1ZV9vZl9PcmlnaW4gRlJPTSBzeW4zMTU2NTAzIFdIRVJFIHB1YmxpYz10cnVlIiwgImlzQ29uc2lzdGVudCI6dHJ1ZSwgIm9mZnNldCI6MH0=) to the results of a specific query.
+* Can share a [link](https://www.synapse.org/#!Synapse:syn3156503/tables/query/eyJsaW1pdCI6MjUsICJzcWwiOiJTRUxFQ1QgVUlELGJpb2xvZ2ljYWxTYW1wbGVOYW1lLERpZmZuYW1lX3Nob3J0LHBhc3NfcWMsQ2VsbF9UeXBlIEZST00gc3luMzE1NjUwMyBXSEVSRSBwdWJsaWM9dHJ1ZSIsICJpc0NvbnNpc3RlbnQiOnRydWUsICJvZmZzZXQiOjB9) to the results of a specific query.
+* Can use results in Wiki, from programmatic clients
+
+Example query:
+
+```
+SELECT UID,biologicalSampleName,Diffname_short,pass_qc,Cell_Type 
+FROM syn3156503
+WHERE public=true
+```
 
 <div class="notes">
 We may want to have data that is queryable, but also enforce what data is entered - certain strings, a column of integers, etc
 A relatively new feature in Synapse
 </div>
 
-## Structured data tables { .smaller }
-
-```
-SELECT UID,biologicalSampleName,Diffname_short,pass_qc,Cell_Type,Cell_Line_Type,Tissue_of_Origin 
-FROM syn3156503 WHERE public=true
-```
-
-## Synapse features | Annotations example { .smaller }
-
+## Synapse features | Annotations { .smaller }
+* User-structured metadata directly on files/folders
+* No types enforced like columns in table
 ```{r echo=TRUE, cache=TRUE, eval=TRUE}
 q <- "select * from file where projectId=='syn2346643' and dataSubType=='cna'"
 res <- synapseQuery(q)
@@ -343,12 +353,14 @@ res <- res[, c("name", "id", "dataType", "platform", "disease")]
 kable(res)
 ```
 
-## Wikis from RMarkdown and IPython | [Sage-Bionetworks/knit2synapse](https://github.com/Sage-Bionetworks/knit2synapse) { .smaller }
+## Wikis from RMarkdown | [Sage-Bionetworks/knit2synapse](https://github.com/Sage-Bionetworks/knit2synapse) 
 
-Example here
+- Run RMarkdown code directly to a Wiki (includes images, code, text)
+- An [Example](https://www.synapse.org/#!Synapse:syn4157539)
 
----
+```
+library(knit2synapse)
+knitfile2synapse("./foobaz.Rmd", owner="syn4157539", overwrite=TRUE)
+```
 
-<div class="centered">
-<img src='./img/runanywhere.png' width='95%'>
-</div>
+- Can do similar thing with IPython notebooks
